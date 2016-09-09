@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -11,9 +8,32 @@ namespace UnitTests
     public class PatternLibTests
     {
         [Test]
-        public void some_test()
+        public void CSVData_will_store_a_list_of_Affiliates()
         {
-            Assert.IsTrue(true);
+            // Act
+            var expectedAffiliates = new CSVData().Affiliates;
+
+            // Assert
+            expectedAffiliates.Should().BeOfType<List<Affiliate>>();
         }
+    }
+
+    public class CSVData
+    {
+        public IList<Affiliate> Affiliates
+        {
+            get
+            {
+                return new List<Affiliate>
+                {
+                    new Affiliate()
+                };
+            } 
+            set {}
+        }
+    }
+
+    public class Affiliate
+    {
     }
 }
