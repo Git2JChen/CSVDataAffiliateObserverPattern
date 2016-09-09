@@ -42,7 +42,7 @@ namespace UnitTests
             var csvDataFeed = new CSVDataFeed();
 
             // Act
-            csvDataFeed.Dettach(affiliate);
+            csvDataFeed.Detach(affiliate);
             var affiliatesActual = csvDataFeed.Affiliates;
 
             // Assert

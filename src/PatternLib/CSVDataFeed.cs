@@ -23,7 +23,7 @@ namespace PatternLib
             _affiliates = new List<Affiliate> { affiliate };
         }
 
-        public void Dettach(Affiliate affiliate)
+        public void Detach(Affiliate affiliate)
         {
             _affiliates = new List<Affiliate> { affiliate };
         }
