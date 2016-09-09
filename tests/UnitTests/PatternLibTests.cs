@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
+using PatternLib;
 
 namespace UnitTests
 {
@@ -16,24 +17,5 @@ namespace UnitTests
             // Assert
             expectedAffiliates.Should().BeOfType<List<Affiliate>>();
         }
-    }
-
-    public class CSVData
-    {
-        public IList<Affiliate> Affiliates
-        {
-            get
-            {
-                return new List<Affiliate>
-                {
-                    new Affiliate()
-                };
-            } 
-            set {}
-        }
-    }
-
-    public class Affiliate
-    {
     }
 }
