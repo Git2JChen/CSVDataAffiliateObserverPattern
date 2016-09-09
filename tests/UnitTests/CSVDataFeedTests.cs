@@ -6,10 +6,10 @@ using PatternLib;
 namespace UnitTests
 {
     [TestFixture]
-    public class PatternLibTests
+    public class CSVDataFeedTests
     {
         [Test]
-        public void CSVData_will_store_a_list_of_Affiliates()
+        public void CSVDataFeed_will_store_a_list_of_Affiliates()
         {
             // Act
             var expectedAffiliates = new CSVDataFeed().Affiliates;
