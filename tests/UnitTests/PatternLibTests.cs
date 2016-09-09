@@ -12,7 +12,7 @@ namespace UnitTests
         public void CSVData_will_store_a_list_of_Affiliates()
         {
             // Act
-            var expectedAffiliates = new CSVData().Affiliates;
+            var expectedAffiliates = new CSVDataFeed().Affiliates;
 
             // Assert
             expectedAffiliates.Should().BeOfType<List<Affiliate>>();

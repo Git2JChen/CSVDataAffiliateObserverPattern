@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PatternLib
 {
-    public class CSVData
+    public class CSVDataFeed
     {
         public IList<Affiliate> Affiliates
         {
