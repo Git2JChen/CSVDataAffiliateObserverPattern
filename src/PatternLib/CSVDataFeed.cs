@@ -4,6 +4,8 @@ namespace PatternLib
 {
     public class CSVDataFeed
     {
+        private IList<Affiliate> _affiliates;
+
         public IList<Affiliate> Affiliates
         {
             get
@@ -14,6 +16,16 @@ namespace PatternLib
                 };
             } 
             set {}
+        }
+
+        public void Attach(Affiliate affiliate)
+        {
+            _affiliates = new List<Affiliate> { affiliate };
+        }
+
+        public void Dettach(Affiliate affiliate)
+        {
+            _affiliates = new List<Affiliate> { affiliate };
         }
     }
 }
