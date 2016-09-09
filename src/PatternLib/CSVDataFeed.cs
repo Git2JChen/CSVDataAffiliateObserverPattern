@@ -1,31 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PatternLib
 {
     public class CSVDataFeed
     {
-        private IList<Affiliate> _affiliates;
+        private IList<Affiliate> _affiliates = new List<Affiliate>();
 
         public IList<Affiliate> Affiliates
         {
             get
             {
-                return new List<Affiliate>
-                {
-                    new Affiliate()
-                };
+                return _affiliates;
             } 
-            set {}
+            set { _affiliates = value; }
         }
 
         public void Attach(Affiliate affiliate)
         {
-            _affiliates = new List<Affiliate> { affiliate };
+            _affiliates.Add(affiliate);
         }
 
         public void Detach(Affiliate affiliate)
         {
-            _affiliates = new List<Affiliate> { affiliate };
+            var index = _affiliates.Select(a => a.Id)
+                        .ToList().IndexOf(affiliate.Id);
+
+            _affiliates.RemoveAt(index);
         }
     }
 }

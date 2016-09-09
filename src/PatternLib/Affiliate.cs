@@ -2,5 +2,6 @@
 {
     public class Affiliate
     {
+        public int Id { get; set; }
     }
 }
