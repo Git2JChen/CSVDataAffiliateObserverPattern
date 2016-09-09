@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace UnitTests
 {
     [TestFixture]
-    public class Class1
+    public class PatternLibTests
     {
         [Test]
         public void some_test()
