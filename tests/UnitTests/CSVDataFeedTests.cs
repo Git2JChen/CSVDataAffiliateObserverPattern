@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using PatternLib;
@@ -39,7 +38,7 @@ namespace UnitTests
         [TestCase(38)]
         [TestCase(7)]
         [TestCase(102)]
-        public void CSVDataFeed_can_dettach_the_Affiliate_of_Id_specified(int id)
+        public void CSVDataFeed_can_dettach_the_Affiliate_with_Id_specified(int id)
         {
             // Arrange
             var csvDataFeed = new CSVDataFeed();
