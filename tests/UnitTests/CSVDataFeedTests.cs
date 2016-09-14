@@ -59,5 +59,21 @@ namespace UnitTests
             // Assert
             affiliatesActual.Should().OnlyContain(a => a.Id != affiliateDetached.Id);
         }
+
+        [Test]
+        public void CSVDataFeed_can_change_its_price()
+        {
+            // Arrange
+            const decimal oldPrice = 10M;
+            const decimal newPrice = 20M;
+            const decimal expectedPrice = newPrice;
+            var csvDataFeed = new CSVDataFeed { Price = oldPrice };
+
+            // Act
+            csvDataFeed.Price = newPrice;
+
+            // Assert
+            Assert.AreEqual(expectedPrice, csvDataFeed.Price);
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace PatternLib
 {
     public class CSVDataFeed
     {
+        private decimal _price;
         private IList<Affiliate> _affiliates = new List<Affiliate>();
 
         public IList<Affiliate> Affiliates
@@ -14,6 +15,12 @@ namespace PatternLib
                 return _affiliates;
             } 
             set { _affiliates = value; }
+        }
+
+        public decimal Price
+        {
+            get { return _price; }
+            set { _price = value; }
         }
 
         public void Attach(Affiliate affiliate)
