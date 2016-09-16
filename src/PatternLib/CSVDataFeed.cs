@@ -6,7 +6,13 @@ namespace PatternLib
     public class CSVDataFeed
     {
         private decimal _price;
+        private INotifier _notifier;
         private IList<Affiliate> _affiliates = new List<Affiliate>();
+
+        public CSVDataFeed(INotifier notifier)
+        {
+            _notifier = notifier;
+        }
 
         public IList<Affiliate> Affiliates
         {
@@ -34,6 +40,11 @@ namespace PatternLib
                         .ToList().IndexOf(affiliate.Id);
 
             _affiliates.RemoveAt(index);
+        }
+
+        public void Notify()
+        {
+            _notifier.UpdateObservers(_affiliates);
         }
     }
 }

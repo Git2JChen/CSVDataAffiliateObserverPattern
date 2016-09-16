@@ -2,6 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using PatternLib;
+using Rhino.Mocks;
 
 namespace UnitTests
 {
@@ -12,7 +13,8 @@ namespace UnitTests
         public void CSVDataFeed_will_store_a_list_of_Affiliates()
         {
             // Act
-            var expectedAffiliates = new CSVDataFeed().Affiliates;
+            var notifier = MockRepository.GenerateMock<INotifier>();
+            var expectedAffiliates = new CSVDataFeed(notifier).Affiliates;
 
             // Assert
             expectedAffiliates.Should().BeOfType<List<Affiliate>>();
@@ -24,8 +26,9 @@ namespace UnitTests
         public void CSVDataFeed_can_attach_a_Affiliate_with_Id_specified(int id)
         {
             // Arrange
+            var notifier = MockRepository.GenerateMock<INotifier>();
             var affiliateAttached = new Affiliate { Id = id };
-            var csvDataFeed = new CSVDataFeed();
+            var csvDataFeed = new CSVDataFeed(notifier);
 
             // Act
             csvDataFeed.Attach(affiliateAttached);
@@ -41,7 +44,8 @@ namespace UnitTests
         public void CSVDataFeed_can_dettach_the_Affiliate_with_Id_specified(int id)
         {
             // Arrange
-            var csvDataFeed = new CSVDataFeed();
+            var notifier = MockRepository.GenerateMock<INotifier>();
+            var csvDataFeed = new CSVDataFeed(notifier);
             var affiliateDetached = new Affiliate { Id = id };
             var affiliates = new List<Affiliate>
             {
@@ -67,13 +71,30 @@ namespace UnitTests
             const decimal oldPrice = 10M;
             const decimal newPrice = 20M;
             const decimal expectedPrice = newPrice;
-            var csvDataFeed = new CSVDataFeed { Price = oldPrice };
+            var notifier = MockRepository.GenerateMock<INotifier>();
+            var csvDataFeed = new CSVDataFeed(notifier) { Price = oldPrice };
 
             // Act
             csvDataFeed.Price = newPrice;
 
             // Assert
             Assert.AreEqual(expectedPrice, csvDataFeed.Price);
+        }
+
+        [Test]
+        public void CSVDataFeed_can_make_notification()
+        {
+            // Arrange
+            var notifier = MockRepository.GenerateMock<INotifier>();
+            var csvDataFeed = new CSVDataFeed(notifier);
+            csvDataFeed.Attach(new Affiliate());
+            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return(true);
+
+            // Act
+            csvDataFeed.Notify();
+            
+            // Assert
+            notifier.VerifyAllExpectations();
         }
     }
 }
