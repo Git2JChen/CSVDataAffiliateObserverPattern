@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Affiliate.cs" />
-    <Compile Include="CSVDataFeed.cs" />
+    <Compile Include="HotelCSVDataFeed.cs" />
     <Compile Include="INotifier.cs" />
     <Compile Include="PatternLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

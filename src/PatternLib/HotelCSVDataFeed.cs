@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace PatternLib
 {
-    public class CSVDataFeed
+    public class HotelCSVDataFeed
     {
         private decimal _price;
         private INotifier _notifier;
         private IList<Affiliate> _affiliates = new List<Affiliate>();
 
-        public CSVDataFeed(INotifier notifier)
+        public HotelCSVDataFeed(INotifier notifier)
         {
             _notifier = notifier;
         }

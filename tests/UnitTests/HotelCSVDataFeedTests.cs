@@ -7,14 +7,14 @@ using Rhino.Mocks;
 namespace UnitTests
 {
     [TestFixture]
-    public class CSVDataFeedTests
+    public class HotelCSVDataFeedTests
     {
         [Test]
         public void CSVDataFeed_will_store_a_list_of_Affiliates()
         {
             // Act
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var expectedAffiliates = new CSVDataFeed(notifier).Affiliates;
+            var expectedAffiliates = new HotelCSVDataFeed(notifier).Affiliates;
 
             // Assert
             expectedAffiliates.Should().BeOfType<List<Affiliate>>();
@@ -28,7 +28,7 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var affiliateAttached = new Affiliate { Id = id };
-            var csvDataFeed = new CSVDataFeed(notifier);
+            var csvDataFeed = new HotelCSVDataFeed(notifier);
 
             // Act
             csvDataFeed.Attach(affiliateAttached);
@@ -45,7 +45,7 @@ namespace UnitTests
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var csvDataFeed = new CSVDataFeed(notifier);
+            var csvDataFeed = new HotelCSVDataFeed(notifier);
             var affiliateDetached = new Affiliate { Id = id };
             var affiliates = new List<Affiliate>
             {
@@ -72,7 +72,7 @@ namespace UnitTests
             const decimal newPrice = 20M;
             const decimal expectedPrice = newPrice;
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var csvDataFeed = new CSVDataFeed(notifier) { Price = oldPrice };
+            var csvDataFeed = new HotelCSVDataFeed(notifier) { Price = oldPrice };
 
             // Act
             csvDataFeed.Price = newPrice;
@@ -86,7 +86,7 @@ namespace UnitTests
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var csvDataFeed = new CSVDataFeed(notifier);
+            var csvDataFeed = new HotelCSVDataFeed(notifier);
             csvDataFeed.Attach(new Affiliate());
             notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return(true);
 
