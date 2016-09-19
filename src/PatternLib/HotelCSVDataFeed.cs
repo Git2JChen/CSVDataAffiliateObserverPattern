@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PatternLib
 {
-    public class HotelCSVDataFeed
+    public class HotelCSVDataFeed : ICSVDataFeed
     {
         private decimal _price;
         private INotifier _notifier;
