@@ -7,14 +7,14 @@ using Rhino.Mocks;
 namespace UnitTests
 {
     [TestFixture]
-    public class HotelCSVDataFeedTests
+    public class BaseDataFeedTests
     {
         [Test]
-        public void CSVDataFeed_will_store_a_list_of_Affiliates()
+        public void BaseDataFeed_will_store_a_list_of_Affiliates()
         {
             // Act
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var expectedAffiliates = new HotelCSVDataFeed(notifier).Affiliates;
+            var expectedAffiliates = new BaseDataFeed(notifier).Affiliates;
 
             // Assert
             expectedAffiliates.Should().BeOfType<List<Affiliate>>();
@@ -23,12 +23,12 @@ namespace UnitTests
         [TestCase(38)]
         [TestCase(7)]
         [TestCase(102)]
-        public void CSVDataFeed_can_attach_a_Affiliate_with_Id_specified(int id)
+        public void BaseDataFeed_can_attach_a_Affiliate_with_Id_specified(int id)
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var affiliateAttached = new Affiliate { Id = id };
-            var csvDataFeed = new HotelCSVDataFeed(notifier);
+            var csvDataFeed = new BaseDataFeed(notifier);
 
             // Act
             csvDataFeed.Attach(affiliateAttached);
@@ -41,11 +41,11 @@ namespace UnitTests
         [TestCase(38)]
         [TestCase(7)]
         [TestCase(102)]
-        public void CSVDataFeed_can_dettach_the_Affiliate_with_Id_specified(int id)
+        public void BaseDataFeed_can_dettach_the_Affiliate_with_Id_specified(int id)
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var csvDataFeed = new HotelCSVDataFeed(notifier);
+            var csvDataFeed = new BaseDataFeed(notifier);
             var affiliateDetached = new Affiliate { Id = id };
             var affiliates = new List<Affiliate>
             {
@@ -65,14 +65,14 @@ namespace UnitTests
         }
 
         [Test]
-        public void CSVDataFeed_can_change_its_price()
+        public void BaseDataFeed_can_change_its_price()
         {
             // Arrange
             const decimal oldPrice = 10M;
             const decimal newPrice = 20M;
             const decimal expectedPrice = newPrice;
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var csvDataFeed = new HotelCSVDataFeed(notifier) { Price = oldPrice };
+            var csvDataFeed = new BaseDataFeed(notifier) { Price = oldPrice };
 
             // Act
             csvDataFeed.Price = newPrice;
@@ -82,11 +82,11 @@ namespace UnitTests
         }
 
         [Test]
-        public void CSVDataFeed_can_make_notification()
+        public void BaseDataFeed_can_make_notification()
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var csvDataFeed = new HotelCSVDataFeed(notifier);
+            var csvDataFeed = new BaseDataFeed(notifier);
             csvDataFeed.Attach(new Affiliate());
             notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return(true);
 
