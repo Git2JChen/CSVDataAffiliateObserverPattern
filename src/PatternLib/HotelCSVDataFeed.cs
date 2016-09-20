@@ -8,7 +8,7 @@ namespace PatternLib
 {
     public class HotelCSVDataFeed : BaseDataFeed
     {
-        private INotifier _notifier;
+        private INotifier _notifier = new TwitterNotifier();
 
         public HotelCSVDataFeed(INotifier notifier) : base(notifier)
         {

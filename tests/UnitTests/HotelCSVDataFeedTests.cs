@@ -13,7 +13,7 @@ namespace UnitTests
         public void HotelCSVDataFeed_will_store_a_list_of_Affiliates()
         {
             // Act
-            var notifier = MockRepository.GenerateMock<INotifier>();
+            var notifier = MockRepository.GenerateMock<TwitterNotifier>();
             var expectedAffiliates = new HotelCSVDataFeed(notifier).Affiliates;
 
             // Assert
@@ -88,7 +88,7 @@ namespace UnitTests
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new HotelCSVDataFeed(notifier);
             csvDataFeed.Attach(new Affiliate());
-            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return(true);
+            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return("Twitter notification sent");
 
             // Act
             csvDataFeed.Notify();

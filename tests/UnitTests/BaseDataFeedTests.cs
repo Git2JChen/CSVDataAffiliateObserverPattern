@@ -88,7 +88,7 @@ namespace UnitTests
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new BaseDataFeed(notifier);
             csvDataFeed.Attach(new Affiliate());
-            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return(true);
+            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return("Email notification sent");
 
             // Act
             csvDataFeed.Notify();
