@@ -5,9 +5,9 @@ namespace PatternLib
 {
     public class BaseDataFeed
     {
-        private decimal _price;
         private INotifier _notifier;
-        private IList<Affiliate> _affiliates = new List<Affiliate>();
+        protected decimal _price;
+        protected IList<Affiliate> _affiliates = new List<Affiliate>();
 
         public BaseDataFeed(INotifier notifier)
         {
@@ -42,7 +42,7 @@ namespace PatternLib
             _affiliates.RemoveAt(index);
         }
 
-        public void Notify()
+        public virtual void Notify()
         {
             _notifier.UpdateObservers(_affiliates);
         }
