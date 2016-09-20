@@ -4,6 +4,6 @@ namespace PatternLib
 {
     public interface INotifier
     {
-        string UpdateObservers(IList<Affiliate> observers);
+        string UpdateObservers(IList<IAffiliate> observers);
     }
 }

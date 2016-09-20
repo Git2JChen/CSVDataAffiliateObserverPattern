@@ -6,7 +6,7 @@ namespace PatternLib
     public class BaseDataFeed
     {
         protected decimal _price;
-        protected IList<Affiliate> _affiliates = new List<Affiliate>();
+        protected IList<IAffiliate> _affiliates = new List<IAffiliate>();
 
         private INotifier _notifier = new EmailNotifier();
 
@@ -15,7 +15,7 @@ namespace PatternLib
             _notifier = notifier;
         }
 
-        public IList<Affiliate> Affiliates
+        public IList<IAffiliate> Affiliates
         {
             get
             {
@@ -30,15 +30,15 @@ namespace PatternLib
             set { _price = value; }
         }
 
-        public void Attach(Affiliate affiliate)
+        public void Attach(IAffiliate easyBooking)
         {
-            _affiliates.Add(affiliate);
+            _affiliates.Add(easyBooking);
         }
 
-        public void Detach(Affiliate affiliate)
+        public void Detach(IAffiliate easyBooking)
         {
             var index = _affiliates.Select(a => a.Id)
-                        .ToList().IndexOf(affiliate.Id);
+                        .ToList().IndexOf(easyBooking.Id);
 
             _affiliates.RemoveAt(index);
         }

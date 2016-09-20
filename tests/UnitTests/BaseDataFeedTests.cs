@@ -17,17 +17,17 @@ namespace UnitTests
             var expectedAffiliates = new BaseDataFeed(notifier).Affiliates;
 
             // Assert
-            expectedAffiliates.Should().BeOfType<List<Affiliate>>();
+            expectedAffiliates.Should().BeOfType<List<IAffiliate>>();
         }
 
-        [TestCase(38)]
-        [TestCase(7)]
-        [TestCase(102)]
-        public void BaseDataFeed_can_attach_a_Affiliate_with_Id_specified(int id)
+        [TestCase(38, "Easy Booker 38")]
+        [TestCase(7, "Easy Booker 7")]
+        [TestCase(102, "Easy Booker 102")]
+        public void BaseDataFeed_can_attach_a_Affiliate_with_Id_and_Name_specified(int id, string name)
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var affiliateAttached = new Affiliate { Id = id };
+            var affiliateAttached = new EasyBooking { Id = id, Name = name };
             var csvDataFeed = new BaseDataFeed(notifier);
 
             // Act
@@ -35,7 +35,7 @@ namespace UnitTests
             var affiliatesActual = csvDataFeed.Affiliates;
 
             // Assert
-            affiliatesActual.Should().ContainSingle(a => a.Id == affiliateAttached.Id);
+            affiliatesActual.Should().ContainSingle(a => a.Id == affiliateAttached.Id && a.Name == name);
         }
 
         [TestCase(38)]
@@ -46,12 +46,12 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new BaseDataFeed(notifier);
-            var affiliateDetached = new Affiliate { Id = id };
-            var affiliates = new List<Affiliate>
+            var affiliateDetached = new EasyBooking { Id = id };
+            var affiliates = new List<IAffiliate>
             {
-                new Affiliate {Id = 7},
-                new Affiliate {Id = 38},
-                new Affiliate {Id = 102}
+                new EasyBooking {Id = 7},
+                new EasyBooking {Id = 38},
+                new EasyBooking {Id = 102}
             };
 
             csvDataFeed.Affiliates = affiliates;
@@ -87,7 +87,7 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new BaseDataFeed(notifier);
-            csvDataFeed.Attach(new Affiliate());
+            csvDataFeed.Attach(new EasyBooking());
             notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return("Email notification sent");
 
             // Act

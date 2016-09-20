@@ -4,7 +4,7 @@ namespace PatternLib
 {
     public class EmailNotifier : INotifier
     {
-        public string UpdateObservers(IList<Affiliate> observers)
+        public string UpdateObservers(IList<IAffiliate> observers)
         {
             return "Email notification sent";
         }

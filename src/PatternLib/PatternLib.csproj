@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Affiliate.cs" />
+    <Compile Include="SmartTravel.cs" />
+    <Compile Include="EasyBooking.cs" />
     <Compile Include="BaseDataFeed.cs" />
     <Compile Include="HotelCSVDataFeed.cs" />
+    <Compile Include="IAffiliate.cs" />
     <Compile Include="INotifier.cs" />
     <Compile Include="EmailNotifier.cs" />
     <Compile Include="PatternLib.cs" />

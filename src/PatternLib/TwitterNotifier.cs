@@ -8,7 +8,7 @@ namespace PatternLib
 {
     public class TwitterNotifier : INotifier
     {
-        public string UpdateObservers(IList<Affiliate> observers)
+        public string UpdateObservers(IList<IAffiliate> observers)
         {
             return "Twitter notification sent";
         }

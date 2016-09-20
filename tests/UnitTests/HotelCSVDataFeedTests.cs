@@ -17,7 +17,7 @@ namespace UnitTests
             var expectedAffiliates = new HotelCSVDataFeed(notifier).Affiliates;
 
             // Assert
-            expectedAffiliates.Should().BeOfType<List<Affiliate>>();
+            expectedAffiliates.Should().BeOfType<List<IAffiliate>>();
         }
 
         [TestCase(38)]
@@ -27,7 +27,7 @@ namespace UnitTests
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var affiliateAttached = new Affiliate { Id = id };
+            var affiliateAttached = new SmartTravel { Id = id };
             var csvDataFeed = new HotelCSVDataFeed(notifier);
 
             // Act
@@ -46,12 +46,12 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new HotelCSVDataFeed(notifier);
-            var affiliateDetached = new Affiliate { Id = id };
-            var affiliates = new List<Affiliate>
+            var affiliateDetached = new SmartTravel { Id = id };
+            var affiliates = new List<IAffiliate>
             {
-                new Affiliate {Id = 7},
-                new Affiliate {Id = 38},
-                new Affiliate {Id = 102}
+                new SmartTravel {Id = 7},
+                new SmartTravel {Id = 38},
+                new SmartTravel {Id = 102}
             };
 
             csvDataFeed.Affiliates = affiliates;
@@ -87,7 +87,7 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new HotelCSVDataFeed(notifier);
-            csvDataFeed.Attach(new Affiliate());
+            csvDataFeed.Attach(new SmartTravel());
             notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return("Twitter notification sent");
 
             // Act
