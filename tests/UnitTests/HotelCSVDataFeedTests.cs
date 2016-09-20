@@ -82,7 +82,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void HotelCSVDataFeed_can_make_notification()
+        public void HotelCSVDataFeed_can_make_notification_via_Twitter()
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
