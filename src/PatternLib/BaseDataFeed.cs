@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace PatternLib
 {
-    public class BaseDataFeed
+    public abstract class BaseDataFeed
     {
+        private INotifier _notifier = new EmailNotifier();
+
         protected decimal _price;
         protected IList<IAffiliate> _affiliates = new List<IAffiliate>();
 
-        private INotifier _notifier = new EmailNotifier();
-
-        public BaseDataFeed(INotifier notifier)
+        protected BaseDataFeed(INotifier notifier)
         {
             _notifier = notifier;
         }
@@ -43,9 +43,6 @@ namespace PatternLib
             _affiliates.RemoveAt(index);
         }
 
-        public virtual void Notify()
-        {
-            _notifier.UpdateObservers(_affiliates);
-        }
+        public abstract void Notify();
     }
 }

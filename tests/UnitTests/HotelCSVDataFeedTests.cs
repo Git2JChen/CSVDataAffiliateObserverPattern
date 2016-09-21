@@ -13,21 +13,21 @@ namespace UnitTests
         public void HotelCSVDataFeed_will_store_a_list_of_Affiliates()
         {
             // Act
-            var notifier = MockRepository.GenerateMock<TwitterNotifier>();
+            var notifier = MockRepository.GenerateMock<INotifier>();
             var expectedAffiliates = new HotelCSVDataFeed(notifier).Affiliates;
 
             // Assert
             expectedAffiliates.Should().BeOfType<List<IAffiliate>>();
         }
 
-        [TestCase(38)]
-        [TestCase(7)]
-        [TestCase(102)]
-        public void HotelCSVDataFeed_can_attach_a_Affiliate_with_Id_specified(int id)
+        [TestCase(38, "SmartTravel 38")]
+        [TestCase(7, "SmartTravel 7")]
+        [TestCase(102, "SmartTravel 102")]
+        public void HotelCSVDataFeed_can_attach_a_SmartTravel_with_Id_and_Name_specified(int id, string name)
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
-            var affiliateAttached = new SmartTravel { Id = id };
+            var affiliateAttached = new SmartTravel { Id = id, Name = name };
             var csvDataFeed = new HotelCSVDataFeed(notifier);
 
             // Act
@@ -35,13 +35,13 @@ namespace UnitTests
             var affiliatesActual = csvDataFeed.Affiliates;
 
             // Assert
-            affiliatesActual.Should().ContainSingle(a => a.Id == affiliateAttached.Id);
+            affiliatesActual.Should().ContainSingle(a => a.Id == affiliateAttached.Id && a.Name == name);
         }
 
         [TestCase(38)]
         [TestCase(7)]
         [TestCase(102)]
-        public void HotelCSVDataFeed_can_dettach_the_Affiliate_with_Id_specified(int id)
+        public void HotelCSVDataFeed_can_dettach_the_SmartTravel_with_Id_specified(int id)
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
