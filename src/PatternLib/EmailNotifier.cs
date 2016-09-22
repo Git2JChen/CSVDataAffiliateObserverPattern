@@ -6,7 +6,7 @@ namespace PatternLib
     {
         public string UpdateObservers(IList<IAffiliate> observers)
         {
-            return "Email notification sent";
+            return string.Format("Email notification sent to: {0} (ID={1})", observers[0].Name, observers[0].Id);
         }
     }
 }
