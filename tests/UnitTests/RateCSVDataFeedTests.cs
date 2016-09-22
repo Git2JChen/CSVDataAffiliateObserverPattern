@@ -87,8 +87,8 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new RateCSVDataFeed(notifier);
-            csvDataFeed.Attach(new EasyBooking());
-            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return("Email notification sent");
+            notifier.Expect(x => x.UpdateObservers(Arg<List<IAffiliate>>.Is.Anything))
+                    .Return("Email notification sent");
 
             // Act
             csvDataFeed.Notify();

@@ -87,8 +87,8 @@ namespace UnitTests
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
             var csvDataFeed = new HotelCSVDataFeed(notifier);
-            csvDataFeed.Attach(new SmartTravel());
-            notifier.Expect(x => x.UpdateObservers(csvDataFeed.Affiliates)).Return("Twitter notification sent");
+            notifier.Expect(x => x.UpdateObservers(Arg<List<IAffiliate>>.Is.Anything))
+                    .Return("Twitter notification sent");
 
             // Act
             csvDataFeed.Notify();
