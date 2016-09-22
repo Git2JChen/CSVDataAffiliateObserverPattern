@@ -6,7 +6,15 @@ namespace PatternLib
     {
         public string UpdateObservers(IList<IAffiliate> observers)
         {
-            return string.Format("Email notification sent to: {0} (ID={1})", observers[0].Name, observers[0].Id);
+            var affiliates = string.Empty;
+
+            foreach (var affiliate in observers)
+            {
+                affiliates += string.Format("{0} (ID={1}), ", affiliate.Name, affiliate.Id);
+            }
+            affiliates = affiliates.TrimEnd(new char[]{' ', ','});
+
+            return "Email notification sent to: " + affiliates;
         }
     }
 }
