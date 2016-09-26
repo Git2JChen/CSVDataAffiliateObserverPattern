@@ -8,7 +8,7 @@ namespace PatternLib
 {
     public class RateCSVDataFeed : BaseDataFeed
     {
-        private INotifier _notifier = new TwitterNotifier();
+        private INotifier _notifier;
 
         public RateCSVDataFeed(INotifier notifier) : base(notifier)
         {

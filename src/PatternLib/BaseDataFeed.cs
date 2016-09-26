@@ -5,7 +5,7 @@ namespace PatternLib
 {
     public abstract class BaseDataFeed
     {
-        private INotifier _notifier = new EmailNotifier();
+        private INotifier _notifier;
 
         protected decimal _price;
         protected IList<IAffiliate> _affiliates = new List<IAffiliate>();

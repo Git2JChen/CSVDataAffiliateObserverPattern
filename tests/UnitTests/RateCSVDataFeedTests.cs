@@ -82,7 +82,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void RateCSVDataFeed_can_make_notification_via_Twitter()
+        public void RateCSVDataFeed_can_make_notification_via_Email()
         {
             // Arrange
             var notifier = MockRepository.GenerateMock<INotifier>();
