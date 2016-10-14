@@ -39,7 +39,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void Will_notify_multiple_Affiliates()
+        public void Will_notify_multiple_Affiliates_each_once()
         {
             // Arrange
             var notifier = new TwitterNotifier();
@@ -47,9 +47,9 @@ namespace UnitTests
             var affiliate1 = MockRepository.GenerateMock<IAffiliate>();
             var affiliate2 = MockRepository.GenerateMock<IAffiliate>();
             var affiliate3 = MockRepository.GenerateMock<IAffiliate>();
-            affiliate1.Expect(a => a.Update()).Return(true);
-            affiliate2.Expect(a => a.Update()).Return(true);
-            affiliate3.Expect(a => a.Update()).Return(true);
+            affiliate1.Expect(a => a.Update()).Return(true).Repeat.Once();
+            affiliate2.Expect(a => a.Update()).Return(true).Repeat.Once();
+            affiliate3.Expect(a => a.Update()).Return(true).Repeat.Once();
 
             var oberversToBeNotified = new List<IAffiliate>
                     {

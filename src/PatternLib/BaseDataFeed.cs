@@ -35,10 +35,10 @@ namespace PatternLib
             _affiliates.Add(easyBooking);
         }
 
-        public void Detach(IAffiliate easyBooking)
+        public void Detach(IAffiliate affiliate)
         {
             var index = _affiliates.Select(a => a.Id)
-                        .ToList().IndexOf(easyBooking.Id);
+                        .ToList().IndexOf(affiliate.Id);
 
             _affiliates.RemoveAt(index);
         }
