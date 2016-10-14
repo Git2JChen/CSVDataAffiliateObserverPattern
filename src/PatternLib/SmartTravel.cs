@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public bool Update()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
