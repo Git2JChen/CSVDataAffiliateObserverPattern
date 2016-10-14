@@ -11,6 +11,7 @@ namespace PatternLib
             foreach (var affiliate in observers)
             {
                 affiliates += string.Format("{0} (ID={1}), ", affiliate.Name, affiliate.Id);
+                affiliate.Update();
             }
             affiliates = affiliates.TrimEnd(new char[]{' ', ','});
 

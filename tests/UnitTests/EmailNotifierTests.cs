@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using PatternLib;
+using Rhino.Mocks;
 
 namespace UnitTests
 {
@@ -35,6 +36,33 @@ namespace UnitTests
 
             // Assert
             Assert.That(expectedMessage, Is.EqualTo(actualMessage));
+        }
+
+        [Test]
+        public void Will_notify_multiple_Affiliates()
+        {
+            // Arrange
+            var notifier = new EmailNotifier();
+
+            var affiliate1 = MockRepository.GenerateMock<IAffiliate>();
+            var affiliate2 = MockRepository.GenerateMock<IAffiliate>();
+            var affiliate3 = MockRepository.GenerateMock<IAffiliate>();
+            affiliate1.Expect(a => a.Update()).Return(true);
+            affiliate2.Expect(a => a.Update()).Return(true);
+            affiliate3.Expect(a => a.Update()).Return(true);
+
+            var oberversToBeNotified = new List<IAffiliate>
+                    {
+                        affiliate1,
+                        affiliate2,
+                        affiliate3
+                    };
+
+            // Act
+            notifier.UpdateObservers(oberversToBeNotified);
+
+            // Assert
+            affiliate1.VerifyAllExpectations();
         }
     }
 }
